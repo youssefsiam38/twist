@@ -26,21 +26,21 @@ type StoryConfig struct {
 	TimeoutDur time.Duration
 }
 
-func ParseStories(config *Config) *[]Story {
+func ParseStories(config *Config, dirName string) *[]Story {
 	var stories []Story
 
 	for _, v := range config.Order {
-		story := parseStory(v)
+		story := parseStory(v, dirName)
 		stories = append(stories, story)
 	}
 
 	return &stories
 }
 
-func parseStory(name string) Story {
+func parseStory(name string, dirName string) Story {
 	story := Story{StoryConfig: StoryConfig{Timeout: "5m"}}
 
-	storyFile, err := ioutil.ReadFile(fmt.Sprintf("./twist/stories/%s.story.yml", name))
+	storyFile, err := ioutil.ReadFile(fmt.Sprintf("./%s/stories/%s.story.yml", dirName, name))
 	if err != nil {
 		reporter.Write(err.Error(), reporter.YAML_ERROR)
 		os.Exit(1)
@@ -76,7 +76,6 @@ func (story Story) CheckAssertions(storyIndex int, config *Config) {
 			if utils.IsValidUrl(assertion.GetExpected()) {
 				expected, _ := url.Parse(assertion.GetExpected())
 				found, _ := url.Parse(*assertion.Found)
-				fmt.Println(utils.CleanUrl(expected), utils.CleanUrl(found))
 				if utils.CleanUrl(expected) == utils.CleanUrl(found) {
 					reporter.Write(assertion.Name, reporter.ASSERTION_SUCCESS)
 				} else {

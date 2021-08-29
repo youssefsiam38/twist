@@ -14,9 +14,9 @@ type StoriesContext struct {
 	Stories []models.Story
 }
 
-func NewStoriesContext() (*StoriesContext, error) {
+func NewStoriesContext(dirName string) (*StoriesContext, error) {
 
-	config, err := models.ParseConfig()
+	config, err := models.ParseConfig(dirName)
 	if err != nil {
 		return nil, err
 	}
@@ -29,7 +29,7 @@ func NewStoriesContext() (*StoriesContext, error) {
 	// The author said to do this to disable logs: https://github.com/chromedp/chromedp/issues/143
 	// ctx, _ = chromedp.NewContext(ctx, chromedp.WithLogf(func(s string, i ...interface{}) {}))
 
-	stories := models.ParseStories(config)
+	stories := models.ParseStories(config, dirName)
 
 	if config.Output == "stdout" || config.Output == "" {
 		reporter.SetConsoleWriter()

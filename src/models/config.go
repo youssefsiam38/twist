@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"time"
@@ -17,10 +18,10 @@ type Config struct {
 	TimeoutDur time.Duration
 }
 
-func ParseConfig() (*Config, error) {
+func ParseConfig(dirName string) (*Config, error) {
 	config := Config{}
 
-	configFile, err := ioutil.ReadFile("./twist/config.yml")
+	configFile, err := ioutil.ReadFile(fmt.Sprintf("./%s/config.yml", dirName))
 	if err != nil {
 
 		// check if any fail in reading the config file Twist will use the default values

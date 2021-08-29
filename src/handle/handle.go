@@ -17,14 +17,14 @@ import (
 // i is the current story
 var i int
 
-func Handle() error {
+func Handle(dirName string) error {
 
 	if !utils.FolderExist("./twist") {
 		reporter.Write("There is no twist folder in this directory", reporter.FLOW_ERROR)
 		os.Exit(1)
 	}
 
-	storiesCtx, err := context.NewStoriesContext()
+	storiesCtx, err := context.NewStoriesContext(dirName)
 	if err != nil {
 		return err
 	}
