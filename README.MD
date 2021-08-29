@@ -28,6 +28,7 @@ This tool is not like selenium or its alternatives, it's less advanced (has only
 
 ## Installation
 
+### Using Go
 To install Twist package, you need to install Go and set your Go workspace first. (the compiled binaries will be added to this repo later)
 
 1. The first need [Go](https://golang.org/) installed (**version 1.13+ is required**), then you can use the below Go command to install Twist.
@@ -42,6 +43,10 @@ $ git clone https://github.com/youssefsiam38/twist.git
 $ cd twist
 $ go install
 ```
+
+### Download The binaries
+
+ twist is available as downloadable binaries from the [releases page](https://github.com/youssefsiam38/twist/releases).
 
 ## Quick start
 
