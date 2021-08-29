@@ -60,7 +60,7 @@ $ twist
 
 ## The Structure
 
-The tool read from two types of yml files and writes only to the `twist/report`. The `twist/config.yml` file which you can provide configurations about the entire flow of the tests (e.g timeout of the flow and the order of the stories in which twist should follow), and the `twist/stories/{your story name}.story.yml` include configurations, instructions and assertions for each user story in your application
+The tool reads from `config.yml` and `{your story name}.story.yml` then writes to the `twist/report`(currently screenshots only). The `twist/config.yml` file which you can provide configurations about the entire flow of the tests (e.g timeout of the flow and the order of the user stories in which twist should follow), and the `twist/stories/{your story name}.story.yml` include configurations, instructions and assertions for each user story in your application
 
 ## Config file options
 
