@@ -16,7 +16,7 @@ func submit(story *models.Story, params interface{}) chromedp.Action {
 		return chromedp.Submit(*s)
 	}
 
-	if (*m)["selector"] == ""{
+	if (*m)["selector"] == "" {
 		reporter.Write("You must specify selector in the \"submit\" instruction", reporter.INPUT_ERROR)
 		os.Exit(1)
 	}

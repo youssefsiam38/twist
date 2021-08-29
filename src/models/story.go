@@ -74,7 +74,10 @@ func (story Story) CheckAssertions(storyIndex int, config *Config) {
 			
 		case "assertPathIs":
 			if utils.IsValidUrl(assertion.GetExpected()) {
-				if assertion.GetExpected() == *assertion.Found {
+				expected, _ := url.Parse(assertion.GetExpected())
+				found, _ := url.Parse(*assertion.Found)
+				fmt.Println(utils.CleanUrl(expected), utils.CleanUrl(found))
+				if utils.CleanUrl(expected) == utils.CleanUrl(found) {
 					reporter.Write(assertion.Name, reporter.ASSERTION_SUCCESS)
 				} else {
 					reporter.Write(fmt.Sprintf("%s\n\t\tExpected: %s\n\t\tFound: %s", assertion.Name, assertion.GetExpected(), *assertion.Found), reporter.ASSERTION_FAILD)
@@ -82,7 +85,7 @@ func (story Story) CheckAssertions(storyIndex int, config *Config) {
 			} else {
 				startUrl, _ := url.Parse(story.Start)
 
-				fullExpected, _ := utils.JoinUrl(utils.CleanHost(startUrl), assertion.GetExpected())
+				fullExpected, _ := utils.JoinUrl(utils.CleanUrlHost(startUrl), assertion.GetExpected())
 				fullExpectedUrl, _ := url.Parse(*fullExpected)
 				foundUrl, err := url.Parse(*assertion.Found)
 				if err != nil {
@@ -92,10 +95,10 @@ func (story Story) CheckAssertions(storyIndex int, config *Config) {
 					reporter.Write(err.Error(), reporter.INPUT_ERROR)
 				}
 
-				if utils.Clean(fullExpectedUrl) == utils.Clean(foundUrl) {
+				if utils.CleanUrl(fullExpectedUrl) == utils.CleanUrl(foundUrl) {
 					reporter.Write(assertion.Name, reporter.ASSERTION_SUCCESS)
 					} else {
-						reporter.Write(fmt.Sprintf("%s\n\t\tExpected: %s\n\t\tFound: %s", assertion.Name, utils.Clean(fullExpectedUrl), utils.Clean(foundUrl)), reporter.ASSERTION_FAILD)
+						reporter.Write(fmt.Sprintf("%s\n\t\tExpected: %s\n\t\tFound: %s", assertion.Name, *fullExpected, *assertion.Found), reporter.ASSERTION_FAILD)
 					}
 				}
 		case "assertText":

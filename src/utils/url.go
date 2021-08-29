@@ -6,14 +6,17 @@ import (
 	"path"
 )
 
-func Clean(u *url.URL) string {
+func CleanUrl(u *url.URL) string {
 	if emptyUrl(*u) {
 		return ""
+	}
+	if u.Path == "/" {
+		u.Path = ""
 	}
 	return fmt.Sprintf("%s://%s%s?%s", u.Scheme, u.Host, u.Path, u.Query().Encode())
 }
 
-func CleanHost(u *url.URL) string {
+func CleanUrlHost(u *url.URL) string {
 	if emptyUrl(*u) {
 		return ""
 	}

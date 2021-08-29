@@ -10,15 +10,14 @@ import (
 
 func init() {
 	rootCmd.AddCommand(versionCmd)
-	rootCmd.Flags().StringVarP(&Verbose, "verbose", "v", "", "verbose output")
-	// rootCmd.MarkFlagRequired("verbose")
+	rootCmd.AddCommand(initCmd)
+	rootCmd.AddCommand(authorCmd)
+	// rootCmd.Flags().StringVarP(&Verbose, "version", "v", "", "Twist version")
 }
 
-var Verbose string
-
 var rootCmd = &cobra.Command{
-	Use:   "twist",
-	Short: "Twist is a convenient automated UI testing tool",
+	Use:   "run the test flow",
+	Short: "Twist is a Simple UI testing tool",
 	Long:  `A fast easy to read and write automation testing tool.Complete documentation is available at https://github.com/youssefsiam38/twist`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := handle.Handle(); err != nil {
