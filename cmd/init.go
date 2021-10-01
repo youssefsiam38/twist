@@ -21,7 +21,7 @@ var initCmd = &cobra.Command{
 	Long:  `Creates the twist folder with the default values for you`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if utils.FolderExist(initDir) {
-			fmt.Printf("%s folder is already exist", initDir)
+			fmt.Printf("%s folder is already exist\n", initDir)
 		} else {
 			err := os.Mkdir(initDir, 0755)
 			if err != nil {
