@@ -2,9 +2,9 @@
 
 <img align="right" width="209px" src="./logo/twistLogo.png">
 
-Twist is a simple UI testing CLI tool written in Go. Its main purpose is to help developers write simple and easy read & write YAML-based instructions and assertions to drive the browser in no-time. (I built this tool to test my personal projects. Use it in your own cautious)
+Twist is a simple UI testing CLI tool written in Go. Its main purpose is to help developers write simple and easy read & write YAML-based instructions and assertions to drive the browser in no time. (It still under development. Use it in your own cautious)
 
-This tool is not like selenium or its alternatives, it's less advanced (has only two assertions!). It is built over [chromedp](https://github.com/chromedp/chromedp) which built over DevTools Protocol (can not test firefox).
+This tool is not like selenium or its alternatives, it's less advanced. It is built over [chromedp](https://github.com/chromedp/chromedp) which is built over DevTools Protocol (can not test firefox).
 
 ## Contents
 
