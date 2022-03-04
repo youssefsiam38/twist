@@ -13,7 +13,7 @@ var dir string
 func init() {
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.AddCommand(initCmd)
-	rootCmd.AddCommand(authorCmd)
+	rootCmd.AddCommand(authorsCmd)
 	rootCmd.Flags().StringVarP(&dir, "dir", "d", "twist", "The Twist directory name")
 }
 
